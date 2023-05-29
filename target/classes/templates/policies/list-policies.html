@@ -20,7 +20,7 @@
     <hr>
 
     <!-- Add a button -->
-    <a th:href="@{/employees/showFormForAdd}"
+    <a th:href="@{/policies/showFormForAdd}"
        class="btn btn-primary btn-sm mb-3">
         Dodaj polisę
     </a>
@@ -64,7 +64,7 @@
                 <!-- Add delete button/link -->
                 <a th:href="@{/policies/delete(policyId=${tempPolicy.id})}"
                    class="btn btn-danger btn-sm"
-                   onclick="if (!(confirm('Czy jesteśpewny, że chcesz usunąć tę polisę?'))) return false">
+                   onclick="if (!(confirm('Czy jesteś pewny, że chcesz usunąć tę polisę?'))) return false">
                     Usuń
                 </a>
             </td>

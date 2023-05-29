@@ -22,7 +22,8 @@ public class PolicyServiceImplementation implements PolicyService {
 
     @Override
     public List<Policy> findAll() {
-        return policyRepository.findAllByOrderByLastNameAsc();
+        // return policyRepository.findAllByOrderByLastNameAsc();
+        return policyRepository.findAllByOrderByIdAsc();
     }
 
     @Override

@@ -10,6 +10,7 @@ public interface PolicyRepository extends JpaRepository<Policy, Integer> {
     // that's it ... no need to write any code LOL!
 
     // add a method to sort by last name
-    public List<Policy> findAllByOrderByLastNameAsc();
+    // public List<Policy> findAllByOrderByLastNameAsc();
+    public List<Policy> findAllByOrderByIdAsc();
 
 }
