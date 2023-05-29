@@ -25,10 +25,15 @@
         Dodaj polisę
     </a>
 
+    <!-- Add a chooseMonth button -->
+    <a th:href="@{/policies/showChooseMonthForm}"
+       class="btn btn-primary btn-sm mb-3">
+        Wybierz miesiąc
+    </a>
+
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>
-            <th>Id</th>
             <th>Data końcowa</th>
             <th>Imię</th>
             <th>Nazwisko</th>
@@ -46,7 +51,7 @@
         <tbody>
         <tr th:each="tempPolicy : ${policies}">
 
-            <td th:text="${tempPolicy.id}" />
+            <td th:hidden="${tempPolicy.id}" />
             <td th:text="${#dates.format(tempPolicy.endingDate, 'dd/MM/yyyy')}" />
             <td th:text="${tempPolicy.firstName}" />
             <td th:text="${tempPolicy.lastName}" />

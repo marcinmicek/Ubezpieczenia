@@ -44,6 +44,18 @@ public class PolicyController {
         return "policies/policy-form";
     }
 
+    // add form for choosing month
+    @GetMapping("/showChooseMonthForm")
+    public String showChooseMonthForm(Model theModel) {
+
+        // create model attribute to bind form data
+        Policy thePolicy = new Policy();
+
+        theModel.addAttribute("policy", thePolicy);
+
+        return "policies/month-form";
+    }
+
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("policyId") int theId, Model theModel) {
 
