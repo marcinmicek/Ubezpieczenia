@@ -28,6 +28,8 @@
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>
+            <th>Id</th>
+            <th>Data końcowa</th>
             <th>Imię</th>
             <th>Nazwisko</th>
             <th>PESEL</th>
@@ -44,6 +46,8 @@
         <tbody>
         <tr th:each="tempPolicy : ${policies}">
 
+            <td th:text="${tempPolicy.id}" />
+            <td th:text="${#dates.format(tempPolicy.endingDate, 'dd/MM/yyyy')}" />
             <td th:text="${tempPolicy.firstName}" />
             <td th:text="${tempPolicy.lastName}" />
             <td th:text="${tempPolicy.pesel}" />

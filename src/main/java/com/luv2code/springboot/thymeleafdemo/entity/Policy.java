@@ -6,6 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Entity
 @Table(name="polisa")
@@ -17,7 +20,11 @@ public class Policy {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-	
+
+	@Column(name="data_koncowa")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date endingDate;
+
 	@Column(name="imie")
 	private String firstName;
 	
@@ -58,9 +65,10 @@ public class Policy {
 		
 	}
 
-	public Policy(int id, String firstName, String lastName, String pesel, String address,
+	public Policy(int id, Date endingDate, String firstName, String lastName, String pesel, String address,
 				  String phoneNumber, String email, String policyNumber, String insurer,
 				  String policyType, String carMake, String registrationNumber) {
+		this.endingDate = endingDate;
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -83,6 +91,14 @@ public class Policy {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Date getEndingDate() {
+		return endingDate;
+	}
+
+	public void setEndingDate(Date endingDate) {
+		this.endingDate = endingDate;
 	}
 
 	public String getFirstName() {
@@ -180,6 +196,7 @@ public class Policy {
 	public String toString() {
 		return "Policy{" +
 				"id=" + id +
+				", endingDate='" + endingDate + '\'' +
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", pesel='" + pesel + '\'' +
