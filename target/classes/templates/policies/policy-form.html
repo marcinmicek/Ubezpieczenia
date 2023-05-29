@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Zapisz polisę</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Lista polis</h3>
+    <hr>
+
+    <p class="h4 mb-4">Zapisz polisę</p>
+
+    <form action="#" th:action="@{/policies/save}"
+          th:object="${policy}" method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}" />
+
+        <input type="text" th:field="*{firstName}"
+               class="form-control mb-4 w-25" placeholder="Imię">
+
+        <input type="text" th:field="*{lastName}"
+               class="form-control mb-4 w-25" placeholder="Nazwisko">
+
+        <input type="text" th:field="*{pesel}"
+               class="form-control mb-4 w-25" placeholder="PESEL">
+
+        <input type="text" th:field="*{address}"
+               class="form-control mb-4 w-25" placeholder="Adres">
+
+        <input type="text" th:field="*{phoneNumber}"
+               class="form-control mb-4 w-25" placeholder="Nr telefonu">
+
+        <input type="text" th:field="*{email}"
+               class="form-control mb-4 w-25" placeholder="E-mail">
+
+        <input type="text" th:field="*{policyNumber}"
+               class="form-control mb-4 w-25" placeholder="Nr polisy">
+
+        <input type="text" th:field="*{insurer}"
+               class="form-control mb-4 w-25" placeholder="Ubezpieczyciel">
+
+        <input type="text" th:field="*{policyType}"
+               class="form-control mb-4 w-25" placeholder="Typ polisy">
+
+        <input type="text" th:field="*{carMake}"
+               class="form-control mb-4 w-25" placeholder="Marka samochodu">
+
+        <input type="text" th:field="*{registrationNumber}"
+               class="form-control mb-4 w-25" placeholder="Nr rejestracyjny">
+
+        <button type="submit" class="btn btn-info col-2">Zapisz</button>
+
+    </form>
+
+    <hr>
+    <!-- Add a navigation link at the bottom of the page -->
+    <a th:href="@{/policies/list}">Powrót do listy polis</a>
+
+</div>
+
+</body>
+
+</html>
