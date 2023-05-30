@@ -16,6 +16,7 @@ public interface PolicyRepository extends JpaRepository<Policy, Integer> {
     // add a method to sort by endingDate
     public List<Policy> findAllByOrderByEndingDateAsc();
 
-    // add a method to filter data from certain month
-
+    // add a method to filter data based on first name
+    // public List<Policy> findByFirstNameLike(String theName);
+    public List<Policy> findByFirstName(String theName);
 }

@@ -9,7 +9,7 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
-  <title>Wybierz miesiąc dla polis</title>
+  <title>Wybierz imię dla polis</title>
 </head>
 
 <body>
@@ -19,16 +19,25 @@
   <h3>Lista polis</h3>
   <hr>
 
-  <p class="h4 mb-4">Wybierz miesiąc dla polis</p>
+  <p class="h4 mb-4">Wybierz imię dla polis</p>
 
-  <form action="#" th:action="@{/policies/list}"
+  <!--
+  <form action="#" th:action="@{/policies/month}"
         th:object="${policy}" method="GET">
-
-    <!-- <input type="date" th:field="*{endingDate}"
-           class="form-control mb-4 w-25" placeholder="Data końcowa"> -->
 
     <label for="quantity">Numer miesiąca (między 1 and 12):</label>
     <input type="number" id="quantity" name="quantity" min="1" max="12">
+
+    <button type="submit" class="btn btn-info col-2">Pokaż</button>
+
+  </form>
+  -->
+
+  <form action="#" th:action="@{/policies/firstName}"
+        th:object="${policy}" method="GET">
+
+    <label for="formFirstName">Podaj imię:</label>
+    <input type="text" id="formFirstName" name="formFirstName"><br><br>
 
     <button type="submit" class="btn btn-info col-2">Pokaż</button>
 

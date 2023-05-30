@@ -26,9 +26,9 @@
     </a>
 
     <!-- Add a chooseMonth button -->
-    <a th:href="@{/policies/showChooseMonthForm}"
+    <a th:href="@{/policies/showChooseFirstNameForm}"
        class="btn btn-primary btn-sm mb-3">
-        Wybierz miesiąc
+        Filtruj po imieniu
     </a>
 
     <table class="table table-bordered table-striped">
@@ -81,6 +81,10 @@
         </tr>
         </tbody>
     </table>
+
+    <hr>
+    <!-- Add a navigation link at the bottom of the page -->
+    <a th:href="@{/policies/list}">Powrót do listy polis</a>
 
 </div>
 

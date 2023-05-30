@@ -33,6 +33,18 @@ public class PolicyController {
         return "policies/list-policies";
     }
 
+    @GetMapping("/firstName")
+    public String listMonthPolicies(@RequestParam("formFirstName") String theName, Model theModel) {
+
+        // get the policies from db
+        List<Policy> thePolicies = policyService.findByFirstName(theName);
+
+        // add to the spring model
+        theModel.addAttribute("policies", thePolicies);
+
+        return "policies/list-policies";
+    }
+
     @GetMapping("/showFormForAdd")
     public String showFormForAdd(Model theModel) {
 
@@ -45,7 +57,7 @@ public class PolicyController {
     }
 
     // add form for choosing month
-    @GetMapping("/showChooseMonthForm")
+    @GetMapping("/showChooseFirstNameForm")
     public String showChooseMonthForm(Model theModel) {
 
         // create model attribute to bind form data
@@ -53,16 +65,16 @@ public class PolicyController {
 
         theModel.addAttribute("policy", thePolicy);
 
-        return "policies/month-form";
+        return "policies/first-name-form";
     }
 
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("policyId") int theId, Model theModel) {
 
-        // get the employee from the service
+        // get the policy from the service
         Policy thePolicy = policyService.findById(theId);
 
-        // set employee as a model attribute to pre-populate the form
+        // set policy as a model attribute to pre-populate the form
         theModel.addAttribute("policy", thePolicy);
 
         // send over to our form
@@ -82,10 +94,10 @@ public class PolicyController {
     @GetMapping("/delete")
     public String delete(@RequestParam("policyId") int theId) {
 
-        // delete the employee
+        // delete the policy
         policyService.deleteById(theId);
 
-        // redirect to the /employees/list
+        // redirect to the /policies/list
         return "redirect:/policies/list";
     }
 }

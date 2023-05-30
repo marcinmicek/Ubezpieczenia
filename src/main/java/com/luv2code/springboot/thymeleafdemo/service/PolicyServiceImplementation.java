@@ -38,10 +38,23 @@ public class PolicyServiceImplementation implements PolicyService {
         }
         else {
             // we didn't find the policy
-            throw new RuntimeException("Did not find policy id - " + theId);
+            throw new RuntimeException("Brak polisy o numerze id: " + theId);
         }
 
         return thePolicy;
+    }
+
+    @Override
+    public List<Policy> findByFirstName(String theName) {
+
+        // List<Policy> results = policyRepository.findByFirstNameLike("%oma%");
+        List<Policy> results = policyRepository.findByFirstName(theName);
+
+        if (results.isEmpty()) {
+            throw new RuntimeException("Nie istnieją polisy o zadanym kryterium");
+        }
+
+        return results;
     }
 
     @Override

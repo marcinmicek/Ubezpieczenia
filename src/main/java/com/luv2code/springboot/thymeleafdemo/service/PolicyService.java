@@ -13,4 +13,7 @@ public interface PolicyService {
 
     void deleteById(int theId);
 
+    // List<Policy> findByFirstName(String theName);
+    List<Policy> findByFirstName(String theName);
+
 }
