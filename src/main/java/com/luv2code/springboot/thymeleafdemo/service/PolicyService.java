@@ -16,4 +16,6 @@ public interface PolicyService {
     // List<Policy> findByFirstName(String theName);
     List<Policy> findByFirstName(String theName);
 
+    List<Policy> findByLastName(String theName);
+
 }

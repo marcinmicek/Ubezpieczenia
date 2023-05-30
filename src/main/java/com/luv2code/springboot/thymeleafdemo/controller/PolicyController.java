@@ -34,10 +34,22 @@ public class PolicyController {
     }
 
     @GetMapping("/firstName")
-    public String listMonthPolicies(@RequestParam("formFirstName") String theName, Model theModel) {
+    public String listFirstNamePolicies(@RequestParam("formFirstName") String theName, Model theModel) {
 
         // get the policies from db
         List<Policy> thePolicies = policyService.findByFirstName(theName);
+
+        // add to the spring model
+        theModel.addAttribute("policies", thePolicies);
+
+        return "policies/list-policies";
+    }
+
+    @GetMapping("/lastName")
+    public String listLastNamePolicies(@RequestParam("formLastName") String theName, Model theModel) {
+
+        // get the policies from db
+        List<Policy> thePolicies = policyService.findByLastName(theName);
 
         // add to the spring model
         theModel.addAttribute("policies", thePolicies);
@@ -56,9 +68,9 @@ public class PolicyController {
         return "policies/policy-form";
     }
 
-    // add form for choosing month
+    // add form for choosing first name for filtering policies
     @GetMapping("/showChooseFirstNameForm")
-    public String showChooseMonthForm(Model theModel) {
+    public String showChooseFirstNameForm(Model theModel) {
 
         // create model attribute to bind form data
         Policy thePolicy = new Policy();
@@ -66,6 +78,18 @@ public class PolicyController {
         theModel.addAttribute("policy", thePolicy);
 
         return "policies/first-name-form";
+    }
+
+    // add form for choosing last name for filtering policies
+    @GetMapping("/showChooseLastNameForm")
+    public String showChooseLastNameForm(Model theModel) {
+
+        // create model attribute to bind form data
+        Policy thePolicy = new Policy();
+
+        theModel.addAttribute("policy", thePolicy);
+
+        return "policies/last-name-form";
     }
 
     @GetMapping("/showFormForUpdate")

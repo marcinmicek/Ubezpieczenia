@@ -37,8 +37,9 @@ public class PolicyServiceImplementation implements PolicyService {
             thePolicy = result.get();
         }
         else {
-            // we didn't find the policy
-            throw new RuntimeException("Brak polisy o numerze id: " + theId);
+            // we didn't find the policy with the chosen id
+            // throw new RuntimeException("Brak polisy o numerze id: " + theId);
+            System.out.println("Brak polisy o numerze id: " + theId);
         }
 
         return thePolicy;
@@ -51,7 +52,24 @@ public class PolicyServiceImplementation implements PolicyService {
         List<Policy> results = policyRepository.findByFirstName(theName);
 
         if (results.isEmpty()) {
-            throw new RuntimeException("Nie istnieją polisy o zadanym kryterium");
+            // we didn't find the policy with the chosen name
+            // throw new RuntimeException("Nie istnieją polisy o zadanym kryterium");
+            System.out.println("Nie istnieją polisy o zadanym kryterium");
+        }
+
+        return results;
+    }
+
+    @Override
+    public List<Policy> findByLastName(String theName) {
+
+        // List<Policy> results = policyRepository.findByFirstNameLike("%oma%");
+        List<Policy> results = policyRepository.findByLastName(theName);
+
+        if (results.isEmpty()) {
+            // we didn't find the policy with the chosen name
+            // throw new RuntimeException("Nie istnieją polisy o zadanym kryterium");
+            System.out.println("Nie istnieją polisy o zadanym kryterium");
         }
 
         return results;

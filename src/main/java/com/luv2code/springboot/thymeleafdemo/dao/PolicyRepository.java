@@ -19,4 +19,7 @@ public interface PolicyRepository extends JpaRepository<Policy, Integer> {
     // add a method to filter data based on first name
     // public List<Policy> findByFirstNameLike(String theName);
     public List<Policy> findByFirstName(String theName);
+
+    // add a method to filter data based on last name
+    public List<Policy> findByLastName(String theName);
 }

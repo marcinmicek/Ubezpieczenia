@@ -19,16 +19,22 @@
     <h3>Lista polis</h3>
     <hr>
 
-    <!-- Add a button -->
+    <!-- Add a button for adding the new policy -->
     <a th:href="@{/policies/showFormForAdd}"
        class="btn btn-primary btn-sm mb-3">
         Dodaj polisę
     </a>
 
-    <!-- Add a chooseMonth button -->
+    <!-- Add a button for filtering by first name -->
     <a th:href="@{/policies/showChooseFirstNameForm}"
        class="btn btn-primary btn-sm mb-3">
         Filtruj po imieniu
+    </a>
+
+    <!-- Add a button for filtering by last name -->
+    <a th:href="@{/policies/showChooseLastNameForm}"
+       class="btn btn-primary btn-sm mb-3">
+        Filtruj po nazwisku
     </a>
 
     <table class="table table-bordered table-striped">
