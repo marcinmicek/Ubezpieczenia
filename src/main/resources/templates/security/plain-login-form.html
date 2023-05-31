@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Strona logowania</title>
+
+  <style>
+        .failed {
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+
+<h3>Moja strona logowania</h3>
+
+<form action="#" th:action="@{/authenticateTheUser}" method="POST">
+
+  <!-- Check for login error -->
+  <div th:if="${param.error}">
+
+    <i class="failed">Błąd! Wprowadzono niepoprawnego użytkownika/hasło.</i>
+
+  </div>
+
+
+  <p>
+    Użytkownik: <input type="text" name="username" />
+  </p>
+
+  <p>
+    Hasło: <input type="password" name="password" />
+  </p>
+
+  <input type="submit" value="Login" />
+
+</form>
+
+</body>
+</html>

@@ -77,10 +77,11 @@ public class PolicyController {
     }
 
     @GetMapping("/month")
-    public String listMonthPolicies(@RequestParam("monthId") int theId, Model theModel) {
+    @Query("SELECT m FROM Policy m WHERE m.endingDate LIKE %:monthId%")
+    public String listMonthPolicies(@RequestParam("monthId") int theInt, Model theModel) {
 
         // get the policies from db
-        List<Policy> thePolicies = policyService.findByEndingDate(theId);
+        List<Policy> thePolicies = policyService.findByEndingDateLike(theInt);
 
         // add to the spring model
         theModel.addAttribute("policies", thePolicies);

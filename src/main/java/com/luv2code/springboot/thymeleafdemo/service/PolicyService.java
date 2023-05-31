@@ -19,6 +19,6 @@ public interface PolicyService {
     List<Policy> findByLastName(String theName);
 
     // List<Policy> findByEndingDate(int theMonth);
-    List<Policy> findByEndingDate(int theMonth);
+    List<Policy> findByEndingDateLike(int theMonth);
 
 }
