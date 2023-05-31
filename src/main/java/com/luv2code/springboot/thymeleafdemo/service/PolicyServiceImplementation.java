@@ -46,10 +46,12 @@ public class PolicyServiceImplementation implements PolicyService {
     }
 
     @Override
-    public List<Policy> findByFirstName(String theName) {
+    // public List<Policy> findByFirstName(String theName) {
+    public List<Policy> findByFirstNameLike(String theName) {
 
         // List<Policy> results = policyRepository.findByFirstNameLike("%oma%");
-        List<Policy> results = policyRepository.findByFirstName(theName);
+        List<Policy> results = policyRepository.findByFirstNameLike(theName);
+        // List<Policy> results = policyRepository.findByFirstName(theName);
 
         if (results.isEmpty()) {
             // we didn't find the policy with the chosen name
@@ -63,12 +65,23 @@ public class PolicyServiceImplementation implements PolicyService {
     @Override
     public List<Policy> findByLastName(String theName) {
 
-        // List<Policy> results = policyRepository.findByFirstNameLike("%oma%");
         List<Policy> results = policyRepository.findByLastName(theName);
 
         if (results.isEmpty()) {
             // we didn't find the policy with the chosen name
-            // throw new RuntimeException("Nie istnieją polisy o zadanym kryterium");
+            System.out.println("Nie istnieją polisy o zadanym kryterium");
+        }
+
+        return results;
+    }
+
+    @Override
+    public List<Policy> findByEndingDate(int theMonth) {
+
+        List<Policy> results = policyRepository.findByEndingDate(theMonth);
+
+        if (results.isEmpty()) {
+            // we didn't find the policy with the chosen month
             System.out.println("Nie istnieją polisy o zadanym kryterium");
         }
 

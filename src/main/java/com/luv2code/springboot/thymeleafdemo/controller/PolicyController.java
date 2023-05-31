@@ -2,6 +2,8 @@ package com.luv2code.springboot.thymeleafdemo.controller;
 
 import com.luv2code.springboot.thymeleafdemo.entity.Policy;
 import com.luv2code.springboot.thymeleafdemo.service.PolicyService;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,11 +35,27 @@ public class PolicyController {
         return "policies/list-policies";
     }
 
+    /*
     @GetMapping("/firstName")
     public String listFirstNamePolicies(@RequestParam("formFirstName") String theName, Model theModel) {
 
         // get the policies from db
-        List<Policy> thePolicies = policyService.findByFirstName(theName);
+        // List<Policy> thePolicies = policyService.findByFirstName(theName);
+        List<Policy> thePolicies = policyService.findByFirstNameLike(theName);
+
+        // add to the spring model
+        theModel.addAttribute("policies", thePolicies);
+
+        return "policies/list-policies";
+    }
+    */
+    @GetMapping("/firstName")
+    @Query("SELECT m FROM Policy m WHERE m.firstName LIKE %:formFirstName%")
+    public String listFirstNamePolicies(@RequestParam("formFirstName") String theName, Model theModel) {
+
+        // get the policies from db
+        // List<Policy> thePolicies = policyService.findByFirstName(theName);
+        List<Policy> thePolicies = policyService.findByFirstNameLike(theName);;
 
         // add to the spring model
         theModel.addAttribute("policies", thePolicies);
@@ -45,11 +63,24 @@ public class PolicyController {
         return "policies/list-policies";
     }
 
+
     @GetMapping("/lastName")
     public String listLastNamePolicies(@RequestParam("formLastName") String theName, Model theModel) {
 
         // get the policies from db
         List<Policy> thePolicies = policyService.findByLastName(theName);
+
+        // add to the spring model
+        theModel.addAttribute("policies", thePolicies);
+
+        return "policies/list-policies";
+    }
+
+    @GetMapping("/month")
+    public String listMonthPolicies(@RequestParam("monthId") int theId, Model theModel) {
+
+        // get the policies from db
+        List<Policy> thePolicies = policyService.findByEndingDate(theId);
 
         // add to the spring model
         theModel.addAttribute("policies", thePolicies);
@@ -90,6 +121,18 @@ public class PolicyController {
         theModel.addAttribute("policy", thePolicy);
 
         return "policies/last-name-form";
+    }
+
+    // add form for choosing month for filtering policies
+    @GetMapping("/showChooseMonthForm")
+    public String showChooseMonthForm(Model theModel) {
+
+        // create model attribute to bind form data
+        Policy thePolicy = new Policy();
+
+        theModel.addAttribute("policy", thePolicy);
+
+        return "policies/month-form";
     }
 
     @GetMapping("/showFormForUpdate")
