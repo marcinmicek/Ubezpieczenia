@@ -71,6 +71,14 @@
     <!-- Add a navigation link at the bottom of the page -->
     <a th:href="@{/policies/list}">Powrót do listy polis</a>
 
+    <!-- Add a logout button -->
+    <p>
+        <form action="#" th:action="@{/logout}" method="POST">
+
+            <button type="submit" class="btn btn-danger">Wyloguj</button>
+        </form>
+    </p>
+
 </div>
 
 </body>
