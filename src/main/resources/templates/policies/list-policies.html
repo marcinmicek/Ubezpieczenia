@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -17,6 +18,16 @@
 <div class="container">
 
     <h3>Lista polis</h3>
+    <hr>
+
+    <!-- Display user name and role -->
+
+    <p>
+        Witaj <span sec:authentication="principal.username"></span>!
+        <br>
+        Twój rodzaj użytkownika to: <span sec:authentication="principal.authorities"></span>
+    </p>
+
     <hr>
 
     <!-- Add a button for adding the new policy -->
