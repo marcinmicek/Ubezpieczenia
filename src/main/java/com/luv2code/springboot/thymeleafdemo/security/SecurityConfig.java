@@ -40,6 +40,12 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(configurer ->
                         configurer
+                                .requestMatchers("/").hasRole("USER")
+                                .requestMatchers("/policies/showChooseFirstNameForm/**").hasAnyRole("MANAGER","ADMIN")
+                                .requestMatchers("/policies/showChooseLastNameForm/**").hasAnyRole("MANAGER","ADMIN")
+                                .requestMatchers("/policies/showChooseMonthForm/**").hasAnyRole("MANAGER","ADMIN")
+                                .requestMatchers("/policies/showFormForAdd/**").hasRole("ADMIN")
+                                .requestMatchers("/policies/showFormForUpdate/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form ->
