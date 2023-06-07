@@ -30,29 +30,39 @@
 
     <hr>
 
-    <!-- Add a button for adding the new policy -->
-    <a th:href="@{/policies/showFormForAdd}"
-       class="btn btn-primary btn-sm mb-3">
-        Dodaj polisę
-    </a>
+    <!-- limit the displaying only for ADMINs -->
+    <div sec:authorize="hasRole('ADMIN')">
 
-    <!-- Add a button for filtering by first name -->
-    <a th:href="@{/policies/showChooseFirstNameForm}"
-       class="btn btn-primary btn-sm mb-3">
-        Filtruj po imieniu
-    </a>
+        <!-- Add a button for adding the new policy -->
+        <a th:href="@{/policies/showFormForAdd}"
+           class="btn btn-primary btn-sm mb-3">
+            Dodaj polisę
+        </a>
 
-    <!-- Add a button for filtering by last name -->
-    <a th:href="@{/policies/showChooseLastNameForm}"
-       class="btn btn-primary btn-sm mb-3">
-        Filtruj po nazwisku
-    </a>
+    </div>
 
-    <!-- Add a button for filtering by month -->
-    <a th:href="@{/policies/showChooseMonthForm}"
-       class="btn btn-primary btn-sm mb-3">
-        Filtruj po miesiącu
-    </a>
+    <!-- limit the displaying only for MANAGERs and ADMINs -->
+    <div sec:authorize="hasAnyRole('MANAGER','ADMIN')">
+
+        <!-- Add a button for filtering by first name -->
+        <a th:href="@{/policies/showChooseFirstNameForm}"
+           class="btn btn-primary btn-sm mb-3">
+            Filtruj po imieniu
+        </a>
+
+        <!-- Add a button for filtering by last name -->
+        <a th:href="@{/policies/showChooseLastNameForm}"
+           class="btn btn-primary btn-sm mb-3">
+            Filtruj po nazwisku
+        </a>
+
+        <!-- Add a button for filtering by month -->
+        <a th:href="@{/policies/showChooseMonthForm}"
+           class="btn btn-primary btn-sm mb-3">
+            Filtruj po miesiącu
+        </a>
+
+    </div>
 
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
@@ -67,7 +77,10 @@
             <th>Nr polisy</th>
             <th>Ubezpieczyciel</th>
             <th>Typ polisy</th>
-            <th>Akcja</th>
+            <!-- limit the displaying only for ADMINs -->
+            <div sec:authorize="hasRole('ADMIN')">
+                <th>Akcja</th>
+            </div>
         </tr>
         </thead>
 
@@ -86,20 +99,25 @@
             <td th:text="${tempPolicy.insurer}" />
             <td th:text="${tempPolicy.policyType}" />
 
-            <!-- Add update button/link -->
-            <td>
-                <a th:href="@{/policies/showFormForUpdate(policyId=${tempPolicy.id})}"
-                   class="btn btn-info btn-sm">
-                    Zaktualizuj
-                </a>
+            <!-- limit the displaying only for ADMINs -->
+            <div sec:authorize="hasRole('ADMIN')">
+                <!-- Add update button/link -->
+                <td>
+                    <a th:href="@{/policies/showFormForUpdate(policyId=${tempPolicy.id})}"
+                       class="btn btn-info btn-sm">
+                        Zaktualizuj
+                    </a>
 
-                <!-- Add delete button/link -->
-                <a th:href="@{/policies/delete(policyId=${tempPolicy.id})}"
-                   class="btn btn-danger btn-sm"
-                   onclick="if (!(confirm('Czy jesteś pewny, że chcesz usunąć tę polisę?'))) return false">
-                    Usuń
-                </a>
-            </td>
+                    <!-- Add delete button/link -->
+                    <a th:href="@{/policies/delete(policyId=${tempPolicy.id})}"
+                       class="btn btn-danger btn-sm"
+                       onclick="if (!(confirm('Czy jesteś pewny, że chcesz usunąć tę polisę?'))) return false">
+                        Usuń
+                    </a>
+                </td>
+            </div>
+
+
 
         </tr>
         </tbody>

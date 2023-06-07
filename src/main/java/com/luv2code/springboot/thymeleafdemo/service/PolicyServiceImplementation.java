@@ -76,9 +76,9 @@ public class PolicyServiceImplementation implements PolicyService {
     }
 
     @Override
-    public List<Policy> findByEndingDateLike(int theMonth) {
+    public List<Policy> findByEndingDateLike(String month) {
 
-        List<Policy> results = policyRepository.findByEndingDateLike(theMonth);
+        List<Policy> results = policyRepository.findByEndingDateLike(month);
 
         if (results.isEmpty()) {
             // we didn't find the policy with the chosen month

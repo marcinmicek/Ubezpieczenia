@@ -49,6 +49,7 @@ public class PolicyController {
         return "policies/list-policies";
     }
     */
+
     @GetMapping("/firstName")
     @Query("SELECT m FROM Policy m WHERE m.firstName LIKE %:formFirstName%")
     public String listFirstNamePolicies(@RequestParam("formFirstName") String theName, Model theModel) {
@@ -63,7 +64,6 @@ public class PolicyController {
         return "policies/list-policies";
     }
 
-
     @GetMapping("/lastName")
     public String listLastNamePolicies(@RequestParam("formLastName") String theName, Model theModel) {
 
@@ -76,12 +76,28 @@ public class PolicyController {
         return "policies/list-policies";
     }
 
+    /*
     @GetMapping("/month")
     @Query("SELECT m FROM Policy m WHERE m.endingDate LIKE %:monthId%")
     public String listMonthPolicies(@RequestParam("monthId") int theInt, Model theModel) {
 
         // get the policies from db
         List<Policy> thePolicies = policyService.findByEndingDateLike(theInt);
+
+        // add to the spring model
+        theModel.addAttribute("policies", thePolicies);
+
+        return "policies/list-policies";
+    }
+    */
+
+    @GetMapping("/month")
+    @Query(value="SELECT * FROM Policy m WHERE m.endingDate LIKE %:monthId%", nativeQuery = true)
+    //@Query(value="SELECT * FROM Policy m WHERE m.endingDate LIKE %:monthId%", nativeQuery = true)
+    public String listMonthPolicies(@RequestParam("monthId") String month, Model theModel) {
+
+        // get the policies from db
+        List<Policy> thePolicies = policyService.findByEndingDateLike(month);
 
         // add to the spring model
         theModel.addAttribute("policies", thePolicies);
